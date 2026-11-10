@@ -1,13 +1,14 @@
 // Service Worker: speichert die App beim ersten Öffnen, danach startet sie auch ohne Netz.
 // Die Messwerte (daten/pegel.json) kommen immer zuerst frisch aus dem Netz, nur ohne Netz aus dem Speicher.
 // Dateiliste und VERSION schreibt werkzeuge/sw-bauen.py; jede Änderung an einer Datei ergibt eine neue Version.
-const VERSION = '3ef53004acbf';
+const VERSION = 'e7bfe64a3a83';
 const KERN = ["./", "index.html", "manifest.webmanifest", "css/app.css", "js/app.js", "js/haupt.js", "js/import.js", "js/logik.js", "fonts/nunito_bold.ttf", "fonts/nunito_extrabold.ttf", "fonts/nunito_semibold.ttf", "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/icon.svg", "icons/logo.svg", "vendor/preact-htm.js"];
 const CACHE = 'hochwasser-' + VERSION;
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {
-    await (await caches.open(CACHE)).addAll(KERN);
+    // cache: 'reload' am Browser-Zwischenspeicher vorbei, sonst landet nach einem Update die alte Fassung im neuen Speicher.
+    await (await caches.open(CACHE)).addAll(KERN.map((u) => new Request(u, { cache: 'reload' })));
     await self.skipWaiting();
   })());
 });

@@ -4,7 +4,7 @@ import { html, render, useState, useEffect, useMemo, useRef } from '../vendor/pr
 import * as L from './logik.js';
 import * as I from './import.js';
 
-export const VERSION = '0.1.1';
+export const VERSION = '0.1.2';
 const LOKAL = 'hochwasser.lokal.v1';
 const ABRUF_MS = 5 * 60_000;
 

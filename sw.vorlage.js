@@ -7,7 +7,8 @@ const CACHE = 'hochwasser-' + VERSION;
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {
-    await (await caches.open(CACHE)).addAll(KERN);
+    // cache: 'reload' am Browser-Zwischenspeicher vorbei, sonst landet nach einem Update die alte Fassung im neuen Speicher.
+    await (await caches.open(CACHE)).addAll(KERN.map((u) => new Request(u, { cache: 'reload' })));
     await self.skipWaiting();
   })());
 });

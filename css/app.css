@@ -1,0 +1,162 @@
+/* Hochwasser: Aussehen wie die Dach-App (Grundfarbe #0B5CAD, Nunito für Überschriften und Knöpfe). */
+@font-face { font-family: 'Nunito'; font-weight: 600; src: url('../fonts/nunito_semibold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Nunito'; font-weight: 700; src: url('../fonts/nunito_bold.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Nunito'; font-weight: 800; src: url('../fonts/nunito_extrabold.ttf') format('truetype'); font-display: swap; }
+
+:root {
+  --primary: #0b5cad; --on-primary: #fff; --primary-container: #d6e4ff; --on-primary-container: #001b3e;
+  --tertiary: #8a4b00; --tertiary-container: #ffdcbe; --on-tertiary-container: #2d1600;
+  --secondary-container: #d9e3f8; --on-secondary-container: #121c2b;
+  --background: #f8f9ff; --on-surface: #191c20; --on-surface-variant: #43474e;
+  --outline: #73777f; --outline-variant: #c3c6cf;
+  --surface: #ffffff; --surface-container: #eceef4; --surface-container-high: #e6e8ee;
+  --error: #ba1a1a; --error-container: #ffdad6; --on-error-container: #410002;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #a8c8ff; --on-primary: #003061; --primary-container: #00468a; --on-primary-container: #d6e4ff;
+    --tertiary: #ffb871; --tertiary-container: #693800; --on-tertiary-container: #ffdcbe;
+    --secondary-container: #3d4758; --on-secondary-container: #d9e3f8;
+    --background: #111318; --on-surface: #e2e2e9; --on-surface-variant: #c3c6cf;
+    --outline: #8d9199; --outline-variant: #43474e;
+    --surface: #1d2024; --surface-container: #1d2024; --surface-container-high: #282a2f;
+    --error: #ffb4ab; --error-container: #93000a; --on-error-container: #ffdad6;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--background); color: var(--on-surface); }
+body { font: 16px/1.4 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+h1, h2, .knopf, .riesig, .tab, strong.tz-wert, .fluss-wert strong { font-family: 'Nunito', system-ui, sans-serif; }
+h1 { margin: 0; font-size: 24px; font-weight: 800; }
+h2 { margin: 0 0 8px; font-size: 18px; font-weight: 800; }
+p { margin: 4px 0; }
+button { font: inherit; color: inherit; }
+.laden { display: grid; place-items: center; min-height: 100vh; color: var(--on-surface-variant); }
+
+.app { max-width: 640px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+.kopf { display: flex; align-items: center; gap: 12px; padding: calc(12px + env(safe-area-inset-top)) 16px 8px; }
+.kopf h1 { flex: 1; }
+.kopf-titel { display: flex; flex-direction: column; }
+.logo { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+.kopf-zurueck { border: 0; background: none; font-size: 34px; line-height: 1; padding: 0 8px 4px 0; color: var(--primary); cursor: pointer; min-width: 44px; min-height: 44px; }
+.stern { border: 0; background: none; font-size: 26px; color: var(--primary); cursor: pointer; min-width: 44px; min-height: 44px; }
+.inhalt { flex: 1; padding: 4px 16px calc(96px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 12px; }
+.fuss { text-align: center; margin-top: 12px; }
+
+.karte { background: var(--surface); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.leise-karte { background: var(--surface-container); }
+.demo { background: var(--surface-container-high); }
+.hinweis { background: var(--tertiary-container); color: var(--on-tertiary-container); border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.klein { font-size: 13.5px; }
+.leise { color: var(--on-surface-variant); }
+.rot { color: var(--error); }
+.zwischen { margin: 8px 4px 0; }
+.riesig { font-size: 44px; font-weight: 800; line-height: 1; }
+.wert-zeile { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.rate { font-weight: 700; }
+.k-steigt .rate, .rate.k-steigt { color: var(--tertiary); }
+.k-alarm .rate, .rate.k-alarm { color: var(--error); }
+.k-ruhig .rate, .rate.k-ruhig { color: var(--primary); }
+
+.reihe { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; }
+.reihe-text { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.knopf { border: 0; border-radius: 22px; min-height: 44px; padding: 0 20px; background: var(--primary); color: var(--on-primary); font-weight: 800; font-size: 15px; cursor: pointer; }
+.knopf:disabled { opacity: .45; cursor: default; }
+.knopf.zweit { background: var(--secondary-container); color: var(--on-secondary-container); }
+.knopf.text { background: none; color: var(--primary); padding: 0 10px; }
+.knopf.breit { width: 100%; min-height: 52px; }
+.klein-knopf { min-height: 40px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { border: 1px solid var(--outline); background: none; border-radius: 10px; min-height: 36px; padding: 0 12px; font-size: 14px; font-weight: 600; cursor: pointer; }
+.chip.an { background: var(--secondary-container); color: var(--on-secondary-container); border-color: transparent; }
+.fortschritt { height: 6px; border-radius: 3px; background: var(--surface-container); overflow: hidden; }
+.fortschritt div { height: 100%; background: var(--primary); }
+
+.modus { display: grid; grid-template-columns: 1fr 1fr; background: var(--surface-container); border-radius: 22px; padding: 4px; }
+.modus button { border: 0; background: none; border-radius: 18px; min-height: 40px; font-weight: 700; cursor: pointer; }
+.modus button.an { background: var(--surface); color: var(--primary); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+
+.held { gap: 10px; }
+.ampel { border-radius: 16px; padding: 12px 14px; }
+.ampel p { margin: 2px 0 0; }
+.a-RUHIG { background: var(--secondary-container); color: var(--on-secondary-container); }
+.a-AUFMERKSAM { background: var(--tertiary-container); color: var(--on-tertiary-container); }
+.a-WARNUNG, .a-ALARM { background: var(--error-container); color: var(--on-error-container); }
+
+/* Flusslauf als Kette */
+.fluss { list-style: none; margin: 0; padding: 0; }
+.fluss li { position: relative; padding-left: 36px; padding-bottom: 6px; }
+.fluss li::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 4px; background: var(--outline-variant); }
+.fluss li:first-child::before { top: 30px; }
+.fluss li:last-child::before { bottom: calc(100% - 30px); }
+.fluss li::after { content: ''; position: absolute; left: 5px; top: 22px; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); border: 3px solid var(--background); }
+.fluss li.k-steigt::after { background: var(--tertiary); }
+.fluss li.k-alarm::after { background: var(--error); }
+.fluss li.hier::after { left: 2px; top: 19px; width: 24px; height: 24px; }
+.fluss-karte { width: 100%; display: flex; align-items: center; gap: 10px; border: 0; background: var(--surface); border-radius: 16px; padding: 12px 14px; text-align: left; cursor: pointer; min-height: 64px; }
+.hier .fluss-karte { background: var(--primary-container); color: var(--on-primary-container); }
+.fluss-name { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.fluss-wert { display: flex; flex-direction: column; align-items: flex-end; }
+.fluss-wert strong { font-size: 20px; }
+.laufzeit { display: block; padding: 4px 0 2px 4px; color: var(--on-surface-variant); }
+
+/* Listen */
+.liste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.liste > li + li { border-top: 1px solid var(--outline-variant); }
+.zeichen, .ping { display: flex; gap: 12px; align-items: center; padding: 8px 0; }
+.zeichen > span:last-child, .ping > span:last-child, .quellen li { display: flex; flex-direction: column; }
+.ping > .klein:first-child { width: 44px; flex: none; color: var(--on-surface-variant); }
+.quellen li { padding: 8px 0; }
+.punkt { width: 12px; height: 12px; border-radius: 50%; background: var(--primary); flex: none; }
+.punkt.auffaellig { background: var(--error); }
+.tabelle-zeile { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 64px 92px; gap: 8px; align-items: center; border: 0; background: none; text-align: left; padding: 8px 0; min-height: 52px; cursor: pointer; }
+.tz-name { display: flex; flex-direction: column; min-width: 0; }
+.tz-wert { text-align: right; font-size: 17px; }
+.tz-rest { display: flex; flex-direction: column; align-items: flex-end; }
+.verwalt { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+.verwalt .tz-name { flex: 1; }
+.marke { background: var(--primary); color: var(--on-primary); border-radius: 8px; padding: 3px 8px; font-size: 12px; font-weight: 700; }
+
+/* Diagramm */
+.diagramm { display: flex; gap: 6px; }
+.achse { display: flex; flex-direction: column; justify-content: space-between; height: 200px; width: 40px; text-align: right; color: var(--on-surface-variant); font-size: 11px; }
+.diagramm svg { flex: 1; height: 200px; overflow: visible; }
+.diagramm .raster { stroke: var(--outline-variant); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.diagramm .grenze { stroke: var(--error); stroke-width: 1.5; stroke-dasharray: 6 4; vector-effect: non-scaling-stroke; }
+.diagramm .haupt { fill: none; stroke: var(--primary); stroke-width: 3; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.diagramm .vergleich { fill: none; stroke: var(--primary); stroke-opacity: .4; stroke-width: 2; stroke-dasharray: 3 3; vector-effect: non-scaling-stroke; }
+.legende span { display: inline-block; width: 16px; height: 0; margin: 0 4px 3px 8px; vertical-align: middle; }
+.legende span:first-child { margin-left: 0; }
+.l-haupt { border-top: 3px solid var(--primary); }
+.l-vergleich { border-top: 2px dashed var(--primary); opacity: .5; }
+.l-grenze { border-top: 2px dashed var(--error); }
+.kacheln { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.kacheln .karte { padding: 12px; gap: 2px; }
+.kacheln strong { font-family: 'Nunito', sans-serif; font-size: 18px; }
+
+/* Formular */
+.feld { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
+.feld-label { font-size: 13.5px; color: var(--on-surface-variant); font-weight: 600; }
+select, input:not([type=checkbox]) { font: inherit; min-height: 44px; border-radius: 10px; border: 1px solid var(--outline); background: var(--surface); color: var(--on-surface); padding: 0 10px; width: 100%; }
+.versteckt { display: none; }
+.schalter { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 6px 0; position: relative; min-height: 48px; }
+.schalter-text { flex: 1; display: flex; flex-direction: column; }
+.schalter input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.schalter-bahn { width: 52px; height: 32px; border-radius: 16px; background: var(--surface-container-high); border: 2px solid var(--outline); position: relative; flex: none; transition: background .15s; }
+.schalter-bahn::after { content: ''; position: absolute; top: 6px; left: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--outline); transition: all .15s; }
+.schalter input:checked + .schalter-bahn { background: var(--primary); border-color: var(--primary); }
+.schalter input:checked + .schalter-bahn::after { left: 24px; top: 4px; width: 20px; height: 20px; background: var(--on-primary); }
+.schalter input:focus-visible + .schalter-bahn { outline: 2px solid var(--primary); outline-offset: 2px; }
+.zaehler { display: flex; align-items: center; gap: 10px; min-height: 48px; }
+.rund { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--outline); background: none; color: var(--primary); font-size: 20px; cursor: pointer; }
+
+/* Reiter unten */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; background: var(--surface-container); padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); }
+.tabs .tab { flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; gap: 2px; border: 0; background: none; font-size: 12px; font-weight: 700; color: var(--on-surface-variant); cursor: pointer; min-height: 52px; }
+.tab-symbol { font-size: 18px; line-height: 28px; width: 56px; border-radius: 14px; text-align: center; }
+.tab.an { color: var(--on-surface); }
+.tab.an .tab-symbol { background: var(--secondary-container); color: var(--on-secondary-container); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }

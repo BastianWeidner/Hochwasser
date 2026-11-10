@@ -1,0 +1,133 @@
+{
+  "hinweis": "Zentrale Aufstellung für alle: Reihenfolge flussabwärts, laufzeitMin = Zeit bis zur nächsten Messstelle darunter, Grenzen in cm. zuordnung: welches LoRa-Gerät (DevEUI oder Name) welche Messstelle ist und wie der Wert umgerechnet wird, siehe README. Keine Schlüssel hier eintragen!",
+  "messstellen": [
+    {
+      "id": "markt1",
+      "name": "Markt-Pegel Neufnach",
+      "gewaesser": "Neufnach",
+      "quelle": "MARKT",
+      "grenzen": [
+        {
+          "name": "eigene Grenze",
+          "cm": 110
+        }
+      ],
+      "laufzeitMin": 120,
+      "favorit": true,
+      "hier": false,
+      "zuordnung": {
+        "geraet": "",
+        "feld": "",
+        "art": "pegel",
+        "einheit": "cm"
+      }
+    },
+    {
+      "id": "markt2",
+      "name": "Markt-Pegel Schmutter oben",
+      "gewaesser": "Schmutter",
+      "quelle": "MARKT",
+      "grenzen": [],
+      "laufzeitMin": 60,
+      "favorit": true,
+      "hier": false,
+      "zuordnung": {
+        "geraet": "",
+        "feld": "",
+        "art": "pegel",
+        "einheit": "cm"
+      }
+    },
+    {
+      "id": "eigen",
+      "name": "Mein Wasserzugang",
+      "gewaesser": "Schmutter",
+      "quelle": "EIGEN",
+      "grenzen": [
+        {
+          "name": "Steg überflutet",
+          "cm": 120
+        }
+      ],
+      "laufzeitMin": 60,
+      "favorit": true,
+      "hier": true,
+      "zuordnung": {
+        "geraet": "",
+        "feld": "",
+        "art": "pegel",
+        "einheit": "cm"
+      }
+    },
+    {
+      "id": "fischach",
+      "name": "Fischach / Schmutter",
+      "gewaesser": "Schmutter",
+      "quelle": "AMTLICH",
+      "grenzen": [
+        {
+          "name": "Meldestufe 1",
+          "cm": 150
+        },
+        {
+          "name": "Meldestufe 2",
+          "cm": 200
+        },
+        {
+          "name": "Meldestufe 3",
+          "cm": 230
+        },
+        {
+          "name": "Meldestufe 4",
+          "cm": 260
+        }
+      ],
+      "laufzeitMin": 60,
+      "favorit": true,
+      "hier": false
+    },
+    {
+      "id": "markt3",
+      "name": "Markt-Pegel unterhalb",
+      "gewaesser": "Schmutter",
+      "quelle": "MARKT",
+      "grenzen": [],
+      "laufzeitMin": 60,
+      "favorit": false,
+      "hier": false,
+      "zuordnung": {
+        "geraet": "",
+        "feld": "",
+        "art": "pegel",
+        "einheit": "cm"
+      }
+    }
+  ],
+  "abruf": [
+    {
+      "art": "hnd",
+      "aktiv": true,
+      "pegelNr": "11942009",
+      "messstelle": "fischach",
+      "hinweis": "Hochwassernachrichtendienst Bayern, öffentlich (CC BY 4.0)"
+    },
+    {
+      "art": "ttn",
+      "aktiv": false,
+      "region": "eu1",
+      "app": "",
+      "geheimnis": "TTN_API_KEY",
+      "hinweis": "The Things Network: Storage Integration der Anwendung muss aktiv sein"
+    },
+    {
+      "art": "url",
+      "aktiv": false,
+      "name": "Inno.Live (Markt Fischach)",
+      "url": "",
+      "geheimnis": "INNO_LIVE_TOKEN",
+      "kopf": "Authorization",
+      "praefix": "Bearer ",
+      "hinweis": "Jede Adresse, die TTN-/ChirpStack-JSON, JSON-Liste oder CSV liefert"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+# Veröffentlicht die Web-App auf GitHub Pages und holt dabei die aktuellen Pegelwerte (daten/pegel.json).
+# Läuft bei jeder Änderung auf main, alle 15 Minuten und auf Knopfdruck (Actions › Seite und Pegel › Run workflow).
+# Einmalig nötig: Settings › Pages › Source = „GitHub Actions“.
+# Zugänge für LoRa-Quellen als Geheimnis anlegen: Settings › Secrets and variables › Actions (z. B. TTN_API_KEY).
+name: Seite und Pegel
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: seite
+  cancel-in-progress: false
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.veroeffentlichen.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tests
+        run: node --test test/*.test.mjs
+      - name: Pegel abrufen
+        env:
+          SEITE_URL: https://bastianweidner.github.io/Hochwasser/
+          TTN_API_KEY: ${{ secrets.TTN_API_KEY }}
+          INNO_LIVE_TOKEN: ${{ secrets.INNO_LIVE_TOKEN }}
+        run: node werkzeuge/abruf.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: veroeffentlichen
+        uses: actions/deploy-pages@v4

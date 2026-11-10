@@ -1,6 +1,6 @@
-# Hochwasser Markt Fischach
+# Hochwasser in Fischach
 
-Web-App (PWA) für die Pegel an Neufnach und Schmutter rund um Markt Fischach: Flusslauf mit Laufzeiten,
+Web-App (PWA) für die Pegel an Neufnach und Schmutter rund um Fischach: Flusslauf mit Laufzeiten,
 Verlauf mit Meldestufen, Voranzeichen und Pings bei schnellem Anstieg oder erreichter Grenze. Gleicher Aufbau
 wie die Hochwasser-Unter-App der Android-Dach-App. **Keine amtliche Warnung** – maßgeblich bleiben
 [HND Bayern](https://www.hnd.bayern.de) und die Warnungen der Behörden.

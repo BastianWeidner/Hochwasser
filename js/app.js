@@ -4,7 +4,7 @@ import { html, render, useState, useEffect, useMemo, useRef } from '../vendor/pr
 import * as L from './logik.js';
 import * as I from './import.js';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.1.1';
 const LOKAL = 'hochwasser.lokal.v1';
 const ABRUF_MS = 5 * 60_000;
 
@@ -139,7 +139,7 @@ export function App() {
     <div class="app">
       <header class="kopf">
         <img class="logo" src="icons/logo.svg" alt="Logo" width="40" height="40" />
-        <span class="kopf-titel"><h1>Hochwasser</h1><span class="leise klein">Markt Fischach</span></span>
+        <span class="kopf-titel"><h1>Hochwasser</h1><span class="leise klein">in Fischach</span></span>
       </header>
       <main class="inhalt">
         ${tab !== 'verwaltung' && html`<${Quelle} ...${ctx} />`}
